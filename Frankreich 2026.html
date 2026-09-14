@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frankreich 2026 - Meine Foto-Galerie</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 { margin-bottom: 10px; }
+        p.subtitle { color: #888; margin-bottom: 40px; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { color: #fff; }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .img-container {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+        .card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Lightbox (Vollbild) */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            cursor: zoom-out;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+
+    <h1>Frankreich 2026</h1>
+    <p class="subtitle">Eindrücke unserer Reise.</p>
+
+    <div class="gallery">
+
+        <!-- Bild 1 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-1.jpg')">
+            <div class="img-container">
+                <img src="bild-1.jpg" alt="Bild 1">
+            </div>
+        </div>
+
+        <!-- Bild 2 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-2.jpg')">
+            <div class="img-container">
+                <img src="bild-2.jpg" alt="Bild 2">
+            </div>
+        </div>
+
+        <!-- Bild 3 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-3.jpg')">
+            <div class="img-container">
+                <img src="bild-3.jpg" alt="Bild 3">
+            </div>
+        </div>
+
+        <!-- Bild 4 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-4.jpg')">
+            <div class="img-container">
+                <img src="bild-4.jpg" alt="Bild 4">
+            </div>
+        </div>
+
+        <!-- Bild 5 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-5.jpg')">
+            <div class="img-container">
+                <img src="bild-5.jpg" alt="Bild 5">
+            </div>
+        </div>
+
+        <!-- Bild 6 (Querformat) -->
+        <div class="card" onclick="openLightbox('bild-6.jpg')">
+            <div class="img-container">
+                <img src="bild-6.jpg" alt="Bild 6">
+            </div>
+        </div>
+
+        <!-- Bild 7 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-7.jpg')">
+            <div class="img-container">
+                <img src="bild-7.jpg" alt="Bild 7">
+            </div>
+        </div>
+
+        <!-- Bild 8 (Hochformat) -->
+        <div class="card" onclick="openLightbox('bild-8.jpg')">
+            <div class="img-container">
+                <img src="bild-8.jpg" alt="Bild 8">
+            </div>
+        </div>
+
+        <!-- Bild 9 (Querformat) -->
+        <div class="card" onclick="openLightbox('bild-9.jpg')">
+            <div class="img-container">
+                <img src="bild-9.jpg" alt="Bild 9">
+            </div>
+        </div>
+
+        <!-- Bild 10 (Querformat) -->
+        <div class="card" onclick="openLightbox('bild-10.jpg')">
+            <div class="img-container">
+                <img src="bild-10.jpg" alt="Bild 10">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lightbox-Overlay -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        function openLightbox(imgSrc) {
+            var lightbox = document.getElementById('lightbox');
+            var img = document.getElementById('lightbox-img');
+            img.src = imgSrc;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    </script>
+
+</body>
+</html>
