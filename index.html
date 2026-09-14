@@ -52,6 +52,22 @@
             font-weight: bold;
             margin: 0;
         }
+        /* Mobile Optimierung für Smartphones */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .gallery-grid {
+        padding: 0 10px;
+        gap: 20px;
+    }
+    .album-card {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
     </style>
 </head>
 <body>
