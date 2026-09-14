@@ -1,4 +1,4 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -33,19 +33,18 @@
         .card:hover {
             transform: translateY(-5px);
         }
-        /* Neuer Container für das Bild in der Kachel */
         .img-container {
             width: 100%;
-            height: 250px; /* Feste Höhe für die Kachel */
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #000; /* Hintergrund bei Hochformat-Bildern */
+            background-color: #000;
         }
         .card img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Wichtig: Bild wird eingepasst, nicht verzerrt */
+            object-fit: contain;
         }
         .card p {
             padding: 15px;
@@ -54,7 +53,7 @@
             font-size: 14px;
         }
 
-        /* Styles für die Lightbox (das Vollbild) */
+        /* Lightbox (Vollbild) */
         #lightbox {
             display: none;
             position: fixed;
@@ -82,56 +81,111 @@
 </head>
 <body>
 
-    <h1>BilderBuilder</h1>
+    <h1>Meine Foto-Galerie</h1>
     <p class="subtitle">Willkommen auf meiner persönlichen Fotoseite.</p>
 
     <div class="gallery">
-        <!-- BEISPIEL 1: Querformat -->
-        <div class="card" onclick="openLightbox('dein-bild-1.jpg')">
-            <div class="img-container">
-                <img src="P1010021_ergebnis.jpg" alt="Beschreibung Bild 1">
-            </div>
-            
-        </div>
- <div class="gallery">
-        <!-- BEISPIEL 1: Querformat -->
-        <div class="card" onclick="openLightbox('dein-bild-1.jpg')">
-            <div class="img-container">
-                <img src="P1010026_ergebnis.jpg" alt="Beschreibung Bild 1">
-            </div>
-            </div>        
 
-        <!-- BEISPIEL 2: Hochformat (passt sich automatisch an) -->
-        <div class="card" onclick="openLightbox('dein-bild-2.jpg')">
+        <!-- Bild 1 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010021_ergebnis.jpg')">
             <div class="img-container">
-                <img src="dein-bild-2.jpg" alt="Beschreibung Bild 2">
+                <img src="bild-1.jpg" alt="Bild 1">
             </div>
-            <p>Titel des zweiten Bildes (Hochformat)</p>
+            <p>Titel Bild 1</p>
         </div>
 
-        <!-- Füge hier weitere Blöcke nach demselben Schema hinzu -->
+        <!-- Bild 2 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010026_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-2.jpg" alt="Bild 2">
+            </div>
+            <p>Titel Bild 2</p>
+        </div>
+
+        <!-- Bild 3 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010032_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-3.jpg" alt="Bild 3">
+            </div>
+            <p>Titel Bild 3</p>
+        </div>
+
+        <!-- Bild 4 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010046_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-4.jpg" alt="Bild 4">
+            </div>
+            <p>Titel Bild 4</p>
+        </div>
+
+        <!-- Bild 5 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010078_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-5.jpg" alt="Bild 5">
+            </div>
+            <p>Titel Bild 5</p>
+        </div>
+
+        <!-- Bild 6 (Querformat) -->
+        <div class="card" onclick="openLightbox('P1010103_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-6.jpg" alt="Bild 6">
+            </div>
+            <p>Titel Bild 6</p>
+        </div>
+
+        <!-- Bild 7 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010128_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-7.jpg" alt="Bild 7">
+            </div>
+            <p>Titel Bild 7</p>
+        </div>
+
+        <!-- Bild 8 (Hochformat) -->
+        <div class="card" onclick="openLightbox('P1010155_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-8.jpg" alt="Bild 8">
+            </div>
+            <p>Titel Bild 8</p>
+        </div>
+
+        <!-- Bild 9 (Querformat) -->
+        <div class="card" onclick="openLightbox('P1010172_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-9.jpg" alt="Bild 9">
+            </div>
+            <p>Titel Bild 9</p>
+        </div>
+
+        <!-- Bild 10 (Querformat) -->
+        <div class="card" onclick="openLightbox('P1010237_ergebnis.jpg')">
+            <div class="img-container">
+                <img src="bild-10.jpg" alt="Bild 10">
+            </div>
+            <p>Titel Bild 10</p>
+        </div>
 
     </div>
 
-    <!-- Das Lightbox-Element, das per Klick geöffnet wird -->
+    <!-- Lightbox-Overlay -->
     <div id="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="">
     </div>
 
     <script>
-        // JavaScript-Funktionen für die Lightbox
         function openLightbox(imgSrc) {
             var lightbox = document.getElementById('lightbox');
             var img = document.getElementById('lightbox-img');
             img.src = imgSrc;
             lightbox.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Verhindert Scrollen im Hintergrund
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             var lightbox = document.getElementById('lightbox');
             lightbox.style.display = 'none';
-            document.body.style.overflow = ''; // Erlaubt Scrollen wieder
+            document.body.style.overflow = '';
         }
     </script>
 
