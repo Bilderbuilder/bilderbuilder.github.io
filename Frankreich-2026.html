@@ -69,12 +69,34 @@
             align-items: center;
             justify-content: center;
         }
-        #lightbox img {
-            max-width: 85%;
-            max-height: 85vh;
+       #lightbox img {
+            max-width: 95%;
+            max-height: 95vh;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            border: 2px solid #fff;
+            border: 1px solid #fff;
             object-fit: contain;
+        }
+
+        /* Mobile Optimierung für die Galerie & Lightbox */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .lightbox-nav {
+                padding: 10px 12px;
+                font-size: 20px;
+            }
+            #prev-btn { left: 10px; }
+            #next-btn { right: 10px; }
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
         }
         
         .lightbox-nav {
