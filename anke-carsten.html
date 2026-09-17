@@ -1,1 +1,146 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anke & Carsten</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            background: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+        /* Einfache Lightbox für Großansicht */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4da6ff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    <h1>Anke & Carsten</h1>
+
+    <div class="gallery" id="gallery">
+        <p style="text-align: center; grid-column: 1/-1;">Lade Bilder...</p>
+    </div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        // GitHub Einstellungen (Groß-/Kleinschreibung beim User beachten!)
+        const githubUser = "Bilderbuilder";
+        const repoName = "bilderbuilder.github.io";
+        const folderPath = "anke-carsten-bilder";
+
+        async function loadGallery() {
+            const galleryEl = document.getElementById('gallery');
+            const apiUrl = `https://api.github.com/repos/${githubUser}/${repoName}/contents/${folderPath}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error("Fehler beim Laden der Bilder");
+                
+                const files = await response.json();
+                
+                // Filtere nur Bilddateien heraus (jpg, jpeg, png, webp)
+                const imageFiles = files.filter(file => 
+                    file.type === 'file' && /\.(jpe?g|png|webp)$/i.test(file.name)
+                );
+
+                if (imageFiles.length === 0) {
+                    galleryEl.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Noch keine Bilder in diesem Ordner vorhanden.</p>';
+                    return;
+                }
+
+                // Nach Dateinamen sortieren (daher Tipp: Benenne sie alphabetisch/chronologisch wie bild-01.jpg)
+                imageFiles.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
+
+                galleryEl.innerHTML = ''; // "Lade Bilder..." entfernen
+
+                imageFiles.forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    // Nutze den raw.githubusercontent.com Link für die direkte Anzeige
+                    img.src = file.download_url;
+                    img.alt = file.name;
+                    
+                    // Klick öffnet Großansicht
+                    img.onclick = () => {
+                        document.getElementById('lightbox-img').src = file.download_url;
+                        document.getElementById('lightbox').style.display = 'flex';
+                    };
+
+                    item.appendChild(img);
+                    galleryEl.appendChild(item);
+                });
+
+            } catch (error) {
+                console.error(error);
+                galleryEl.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #ff6b6b;">Fehler beim Laden der Galerie.</p>';
+            }
+        }
+
+        loadGallery();
+    </script>
+
+</body>
+</html>
